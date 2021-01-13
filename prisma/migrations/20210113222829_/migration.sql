@@ -5,6 +5,7 @@ CREATE TABLE `step` (
     `duration` INT,
     `description` VARCHAR(191),
     `media_path` VARCHAR(191),
+    `id_trip` INT NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -15,6 +16,8 @@ CREATE TABLE `trip` (
     `title` VARCHAR(191) NOT NULL,
     `duration` INT,
     `description` VARCHAR(191),
+    `id_user` INT NOT NULL,
+INDEX `trip_user_FK`(`id_user`),
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -29,3 +32,9 @@ CREATE TABLE `user` (
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- AddForeignKey
+ALTER TABLE `step` ADD FOREIGN KEY (`id_trip`) REFERENCES `trip`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `trip` ADD FOREIGN KEY (`id_user`) REFERENCES `user`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;

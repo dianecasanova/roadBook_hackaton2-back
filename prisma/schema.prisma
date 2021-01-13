@@ -15,7 +15,6 @@ model step {
   media_path  String?
   trip        trip   @relation(fields: [id_trip], references: [id])
   id_trip     Int
-
 }
 
 model trip {
@@ -26,7 +25,6 @@ model trip {
   step        step[]
   user        user    @relation(fields: [id_user], references: [id])
   id_user     Int
-  
 }
 
 model user {
