@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
       user: true,
     },
   });
-  return res.status(200).json(properties);
+  return res.status(200).json(trips);
 });
 
 //POST TRIP
