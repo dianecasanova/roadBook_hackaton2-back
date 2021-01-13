@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DB_USER")
+}
+
+model step {
+  id          Int     @id @default(autoincrement())
+  city        String
+  duration    Int?
+  description String?
+  media_path  String?
+  trip        trip   @relation(fields: [id_trip], references: [id])
+  id_trip     Int
+
+}
+
+model trip {
+  id          Int     @id @default(autoincrement())
+  title       String
+  duration    Int?
+  description String?
+  step        step[]
+  user        user    @relation(fields: [id_user], references: [id])
+  id_user     Int
+  
+}
+
+model user {
+  id        Int    @id @default(autoincrement())
+  firstname String
+  lastname  String
+  email     String
+  password  String
+  trip      trip[]
+}
