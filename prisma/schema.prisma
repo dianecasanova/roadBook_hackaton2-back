@@ -11,9 +11,10 @@ datasource db {
 model trip {
   id          Int       @id @default(autoincrement())
   title       String
-  Date        DateTime  @default(now())
+  date        DateTime  @default(now())
   description String?
-  gps         Int
+  latitude    Float
+  longitude   Float
   media_path  String?
   user        user      @relation(fields: [id_user], references: [id])
   id_user     Int

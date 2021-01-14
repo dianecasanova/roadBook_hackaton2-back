@@ -2,9 +2,10 @@
 CREATE TABLE `trip` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `title` VARCHAR(191) NOT NULL,
-    `Date` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `date` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `description` VARCHAR(191),
-    `gps` INT NOT NULL,
+    `latitude` DECIMAL(65,30) NOT NULL,
+    `longitude` DECIMAL(65,30) NOT NULL,
     `media_path` VARCHAR(191),
     `id_user` INT NOT NULL,
 INDEX `trip_user_FK`(`id_user`),

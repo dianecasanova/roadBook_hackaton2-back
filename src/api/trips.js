@@ -16,14 +16,25 @@ router.get('/', async (req, res) => {
 
 //POST TRIP
 router.post('/', async (req, res) => {
-  const { title, duration, description, id_user } = req.body;
+  const {
+    title,
+    Date,
+    description,
+    latitude,
+    longitude,
+    media_path,
+    id_user,
+  } = req.body;
 
   try {
     const newTrip = await prisma.trip.create({
       data: {
         title,
-        duration,
+        Date,
         description,
+        latitude,
+        longitude,
+        media_path,
         user: {
           connect: {
             id: id_user,
@@ -68,12 +79,19 @@ router.get('/:id', (req, res, next) => {
 router.put('/:id', async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { title, duration, description } = req.body;
+    const {
+      title,
+      Date,
+      description,
+      latitude,
+      longitude,
+      media_path,
+    } = req.body;
     const updateTrip = await prisma.trip.update({
       where: {
         id: parseInt(id, 10),
       },
-      data: { title, duration, description },
+      data: { title, Date, description, latitude, longitude, media_path },
     });
 
     res.status(200).json(updateTrip);
