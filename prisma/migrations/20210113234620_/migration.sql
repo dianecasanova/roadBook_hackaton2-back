@@ -6,6 +6,7 @@ CREATE TABLE `step` (
     `description` VARCHAR(191),
     `media_path` VARCHAR(191),
     `id_trip` INT NOT NULL,
+INDEX `step_user_FK`(`id_trip`),
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

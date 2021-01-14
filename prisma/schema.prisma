@@ -15,6 +15,7 @@ model step {
   media_path  String?
   trip        trip   @relation(fields: [id_trip], references: [id])
   id_trip     Int
+  @@index([id_trip], name: "step_user_FK")
 }
 
 model trip {
@@ -25,6 +26,7 @@ model trip {
   step        step[]
   user        user    @relation(fields: [id_user], references: [id])
   id_user     Int
+  @@index([id_user], name: "trip_user_FK")
 }
 
 model user {
