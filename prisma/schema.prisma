@@ -7,33 +7,24 @@ datasource db {
   url      = env("DB_USER")
 }
 
-model step {
-  id          Int     @id @default(autoincrement())
-  city        String
-  duration    Int?
-  description String?
-  media_path  String?
-  trip        trip   @relation(fields: [id_trip], references: [id])
-  id_trip     Int
-  @@index([id_trip], name: "step_user_FK")
-}
 
 model trip {
-  id          Int     @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   title       String
-  duration    Int?
+  Date        DateTime  @default(now())
   description String?
-  step        step[]
-  user        user    @relation(fields: [id_user], references: [id])
+  gps         Int
+  media_path  String?
+  user        user      @relation(fields: [id_user], references: [id])
   id_user     Int
   @@index([id_user], name: "trip_user_FK")
 }
 
 model user {
-  id        Int    @id @default(autoincrement())
+  id        Int     @id @default(autoincrement())
   firstname String
   lastname  String
-  email     String
+  email     String  @unique
   password  String
   trip      trip[]
 }
